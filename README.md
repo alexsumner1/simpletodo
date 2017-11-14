@@ -13,7 +13,7 @@ A picture is worth 1000 words:
 - JIRA ticket links, simply set your JIRA prefix and ticket IDs can be placed next to tasks
 - Single-depth (for now) subtasks
 - Task rearranging
-- Multiple states: TODO, WORK, HOLD, DONE
+- Multiple states: TODO, WORK, NEXT, HOLD, DONE
 - Colour coding
 - Task comments and editing
 
@@ -28,3 +28,4 @@ Run the application by opening the index.htm in your favourite web browser.
 - `l` adds a JIRA link, simply type a ticket ID and if the URL is set, a link will appear next to the task
 - `[` and `]` move the task up or down respectively
 - `x` deletes a task
+- `r` Creates a horizontal rule, denoting a section
