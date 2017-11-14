@@ -30,7 +30,8 @@ app.controller("MainController", function($scope, $localStorage, $sessionStorage
     $scope.toggleDone = function() {
 	if($scope.$storage.todoList[$scope.cur].status == "TODO") $scope.$storage.todoList[$scope.cur].status = "WORK";
 	else if($scope.$storage.todoList[$scope.cur].status == "WORK") $scope.$storage.todoList[$scope.cur].status = "HOLD";
-	else if($scope.$storage.todoList[$scope.cur].status == "HOLD") $scope.$storage.todoList[$scope.cur].status = "DONE";
+	else if($scope.$storage.todoList[$scope.cur].status == "HOLD") $scope.$storage.todoList[$scope.cur].status = "NEXT";
+	else if($scope.$storage.todoList[$scope.cur].status == "NEXT") $scope.$storage.todoList[$scope.cur].status = "DONE";
 	else if($scope.$storage.todoList[$scope.cur].status == "DONE") $scope.$storage.todoList[$scope.cur].status = "TODO";
     };
 
@@ -125,6 +126,13 @@ app.controller("MainController", function($scope, $localStorage, $sessionStorage
 		$scope.$storage.todoList[$scope.cur+1] = $scope.$storage.todoList[$scope.cur];
 		$scope.$storage.todoList[$scope.cur] = x;
 		$scope.cur++;
+	    }
+	    if(e.key == 'r') {
+		$scope.$storage.todoList.splice($scope.cur+1, 0, {
+		    "text": "-------------------------------------------------",
+		    "status": "----"
+		});
+		$scope.cancel();
 	    }
 		
 
