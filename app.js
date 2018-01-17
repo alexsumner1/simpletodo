@@ -115,6 +115,12 @@ app.controller("MainController", function($scope, $localStorage, $sessionStorage
 		$scope.cmd = $scope.$storage.todoList[$scope.cur].text;
 		$scope.editing = 'editing';
 	    }
+	    if(e.key == 'n') {
+		e.preventDefault();
+		$scope.commandLine = "Create note:";
+		$scope.setCmdFocus(true);
+		$scope.editing = 'note';
+	    }
 	    if(e.key == '[') {
 		var x = $scope.$storage.todoList[$scope.cur-1];
 		$scope.$storage.todoList[$scope.cur-1] = $scope.$storage.todoList[$scope.cur];
@@ -126,6 +132,14 @@ app.controller("MainController", function($scope, $localStorage, $sessionStorage
 		$scope.$storage.todoList[$scope.cur+1] = $scope.$storage.todoList[$scope.cur];
 		$scope.$storage.todoList[$scope.cur] = x;
 		$scope.cur++;
+	    }
+	    if(e.key == '>') {
+		$scope.$storage.todoList[$scope.cur].text = "\u2758\u2001\u2001" + $scope.$storage.todoList[$scope.cur].text;
+	    }
+	    if(e.key == '<') {
+		if($scope.$storage.todoList[$scope.cur].text.includes("\u2001")) {
+		    $scope.$storage.todoList[$scope.cur].text = $scope.$storage.todoList[$scope.cur].text.substr(3);
+		}
 	    }
 	    if(e.key == 'r') {
 		$scope.$storage.todoList.splice($scope.cur+1, 0, {
@@ -144,6 +158,7 @@ app.controller("MainController", function($scope, $localStorage, $sessionStorage
 		    "text": $scope.cmd,
 		    "status": "TODO"
 		});
+		$scope.cur++;
 		$scope.cancel();
 	    }
 	}
@@ -161,6 +176,7 @@ app.controller("MainController", function($scope, $localStorage, $sessionStorage
 		    "text": "\u2517\u2501 "+$scope.cmd,
 		    "status": "TODO"
 		});
+		$scope.cur++;
 		$scope.cancel();
 	    }
 	}
@@ -207,6 +223,17 @@ app.controller("MainController", function($scope, $localStorage, $sessionStorage
 		$scope.cancel();
 	    }
 	}
+
+	if($scope.editing == 'note') {
+	    if(e.key == "Enter") {
+		$scope.$storage.todoList.splice($scope.cur+1, 0, {
+		    "text": $scope.cmd,
+		    "status": "NOTE"
+		});
+		$scope.cancel();
+	    }
+	}
+	    
 	
     };
 

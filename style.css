@@ -10,6 +10,11 @@
     padding-right: 2px;
 }
 
+.main {
+    margin-bottom: 3em;
+    position: absolute;
+}
+
 .commandline {
     padding-left: 2px;
     padding-right: 2px;
@@ -21,6 +26,7 @@
     width: 100%;
     padding: 0px;
     margin: 0px;
+    background: #353945;
 }
 body {
     background: #353945;
@@ -81,6 +87,11 @@ input {
 .sectionItem {
     color: #fff;
     font-weight: bold;
+}
+
+.noteItem {
+    color: #ffdc00;
+    font-style: italic;
 }
 
 .blink {
